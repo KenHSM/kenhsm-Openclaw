@@ -1,0 +1,156 @@
+{
+  "agents": {
+    "defaults": {
+      "workspace": "/root/.openclaw/workspace",
+      "models": {
+        "litellm/claude-opus-4-6": {
+          "alias": "LiteLLM"
+        },
+        "litellm/online/openrouter/deepseek/deepseek-v3.2": {}
+      },
+      "model": {
+        "primary": "litellm/online/openrouter/deepseek/deepseek-v3.2"
+      }
+    }
+  },
+  "gateway": {
+    "mode": "local",
+    "auth": {
+      "mode": "token",
+      "token": "b74da4a83c5c203591014f554ceb51b7a012190b0c5c2932"
+    },
+    "port": 18789,
+    "bind": "loopback",
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "controlUi": {
+      "allowInsecureAuth": true
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "contacts.add",
+        "calendar.add",
+        "reminders.add",
+        "sms.send",
+        "sms.search"
+      ]
+    }
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "tools": {
+    "profile": "coding"
+  },
+  "plugins": {
+    "entries": {
+      "litellm": {
+        "enabled": true
+      },
+      "memory-core": {
+        "config": {}
+      }
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "litellm": {
+        "baseUrl": "https://llm.4geeks.ai",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "claude-opus-4-6",
+            "name": "Claude Opus 4.6",
+            "reasoning": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 128000,
+            "maxTokens": 8192
+          }
+        ]
+      }
+    }
+  },
+  "auth": {
+    "profiles": {
+      "litellm:default": {
+        "provider": "litellm",
+        "mode": "api_key"
+      }
+    }
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "boot-md": {
+          "enabled": true
+        },
+        "bootstrap-extra-files": {
+          "enabled": true
+        },
+        "command-logger": {
+          "enabled": true
+        },
+        "compaction-notifier": {
+          "enabled": true
+        },
+        "session-memory": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "wizard": {
+    "lastRunAt": "2026-06-11T03:53:17.981Z",
+    "lastRunVersion": "2026.6.5",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.6.5",
+    "lastTouchedAt": "2026-06-13T01:59:11.314Z"
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "botToken": "8884127547:AAEZGg4YKgyUNcPngk1vN5wV5BYe1hFuCKg",
+      "dmPolicy": "pairing",
+      "groups": {
+        "*": {
+          "requireMention": true
+        }
+      }
+    }
+  },
+  "commands": {
+    "ownerAllowFrom": [
+      "telegram:8864224663"
+    ]
+  },
+  "mcp": {
+    "servers": {
+      "composio": {
+        "url": "https://connect.composio.dev/mcp",
+        "transport": "streamable-http",
+        "headers": {
+          "x-consumer-api-key": "ck_vuMLHwbUeFn7xOjUXPcl"
+        }
+      }
+    }
+  }
+}
